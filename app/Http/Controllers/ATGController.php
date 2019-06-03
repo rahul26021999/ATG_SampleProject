@@ -27,7 +27,7 @@ class ATGController extends Controller
             'pincode'=>'required|max:6|min:6'
         ]);
         User::create($validInputs);
-        return view('success');
+         return view('welcome', ['success' => true]);
     }
 
     
