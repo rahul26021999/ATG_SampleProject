@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Traits\registration;
 
 class ATGController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    use registration;
+
     public function index()
     {
         return view('welcome');
@@ -20,15 +18,17 @@ class ATGController extends Controller
     public function store(Request $request)
     {
 
-
-        $validInputs=request()->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'pincode'=>'required|max:6|min:6'
-        ]);
-        User::create($validInputs);
-         return view('welcome', ['success' => true]);
+        $validator=$this->check($request);
+        if ($validator->fails()) {
+            return redirect('/')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+            $this->submit($request);
+            return view('welcome', ['success' => true]);
+        }
+        
     }
-
     
 }

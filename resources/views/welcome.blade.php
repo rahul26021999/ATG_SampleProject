@@ -30,7 +30,7 @@
     <div class="container">
 
       @isset($success)
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>successfull submitted !!</strong> .
       </div>
@@ -51,16 +51,16 @@
     @csrf()
     <div class="form-group">
         <label for="email" class="font-weight-bold bigFont">Email</label>
-        <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your mail" autofocus value="{{old('email')}}" required pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-Z]{2,4}$">
+        <input type="text" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your mail" autofocus value="{{old('email')}}"  >
     </div>
 
     <div class="form-group">
         <label for="name" class="font-weight-bold bigFont">Name</label>
-        <input type="text" class="form-control form-control-lg" id="name"  name="name" placeholder="Enter your name" value="{{old('name')}}" required pattern="[a-Z]">
+        <input type="text" class="form-control form-control-lg" id="name"  name="name" placeholder="Enter your name" value="{{old('name')}}" pattern="[A-Za-z]+">
     </div>
     <div class="form-group">
         <label for="pincode" class="font-weight-bold bigFont">Pincode</label>
-        <input type="number" class="form-control form-control-lg" id="pincode" name="pincode" placeholder="Pincode" value="{{old('pincode')}}" required minlength="6" maxlength="6">
+        <input type="number" class="form-control form-control-lg" id="pincode" name="pincode" placeholder="Pincode" value="{{old('pincode')}}"  minlength="6" maxlength="6">
     </div>
     <div class="text-center">
         <input type="submit" name="submit" value="submit" class="btn btn-info btn-lg text-uppercase">
